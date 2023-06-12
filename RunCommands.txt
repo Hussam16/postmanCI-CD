@@ -1,0 +1,29 @@
+newman run PetStoreCollection.postman_collection.json -r htmlextra
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+               git branch: 'main', url: 'https://github.com/Hussam16/postmanCI-CD.git'
+            }
+        }
+
+
+
+        stage('Run Postman Collection') {
+            steps {
+                bat 'newman run PetStoreCollection.postman_collection.json -r htmlextra --reporter-htmlextra-export report.html --disable-unicode'
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'report.html', onlyIfSuccessful: true
+        }
+    }
+}
+

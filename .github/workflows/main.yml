@@ -16,12 +16,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
 
       - name: Install Newman and HTML Extra
         run: |
-          npm install -g newman@5.2.2
-          npm install -g newman-reporter-html-extra@1.4.0
+          npm install -g newman
+          npm install -g newman-reporter-html-extra
 
       - name: Run Postman Collection
         run: newman run PetStoreCollection.postman_collection.json --reporters html-extra --reporter-html-extra-export output.html
