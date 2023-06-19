@@ -1,181 +1,50 @@
 {
 	"info": {
-		"_postman_id": "6320fa34-f7d3-46b9-8a80-c5ef2ed69b9f",
-		"name": "PetStoreCollection",
+		"_postman_id": "eb127da0-ddf0-4474-9fc5-bb3eadbd66a5",
+		"name": "Sample API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "7640175"
+		"_exporter_id": "28059417",
+		"_collection_link": "https://qa-digitalgurus.postman.co/workspace/QA-Workspace~f0cb1615-88c6-40d8-8664-2874ea024b4a/collection/28059417-eb127da0-ddf0-4474-9fc5-bb3eadbd66a5?action=share&creator=28059417&source=collection_link"
 	},
 	"item": [
 		{
-			"name": "New Request",
+			"name": "Get Status",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"\r",
-							"const schema={\r",
-							"    \"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
-							"    \"$id\": \"http://example.com/example.json\",\r",
-							"    \"type\": \"object\",\r",
-							"    \"default\": {},\r",
-							"    \"title\": \"Root Schema\",\r",
-							"    \"required\": [\r",
-							"        \"code\",\r",
-							"        \"type\",\r",
-							"        \"message\"\r",
-							"    ],\r",
-							"    \"properties\": {\r",
-							"        \"code\": {\r",
-							"            \"type\": \"integer\",\r",
-							"            \"default\": 0,\r",
-							"            \"title\": \"The code Schema\",\r",
-							"            \"examples\": [\r",
-							"                200\r",
-							"            ]\r",
-							"        },\r",
-							"        \"type\": {\r",
-							"            \"type\": \"string\",\r",
-							"            \"default\": \"\",\r",
-							"            \"title\": \"The type Schema\",\r",
-							"            \"examples\": [\r",
-							"                \"unknown\"\r",
-							"            ]\r",
-							"        },\r",
-							"        \"message\": {\r",
-							"            \"type\": \"string\",\r",
-							"            \"default\": \"\",\r",
-							"            \"title\": \"The message Schema\",\r",
-							"            \"examples\": [\r",
-							"                \"10\"\r",
-							"            ]\r",
-							"        }\r",
-							"    },\r",
-							"    \"examples\": [{\r",
-							"        \"code\": 200,\r",
-							"        \"type\": \"unknown\",\r",
-							"        \"message\": \"10\"\r",
-							"    }]\r",
-							"}\r",
-							"\r",
-							"\r",
-							"\r",
-							"// Validate the response body against the schema\r",
-							"const isValid = tv4.validate(pm.response.json(), schema);\r",
-							"// Assert that the response is valid\r",
-							"pm.test(\"Response has a valid schema\", function() {\r",
-							"  pm.expect(isValid).to.be.true;\r",
-							"});\r",
-							"\r",
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Status code at Response Body\", function () {\r",
-							"var codeNum=pm.response.json().code\r",
-							"    pm.expect(codeNum).to.equal(200);\r",
-							"});\r",
+							"console.log('admin change')\r",
 							"\r",
-							"pm.test(\"Verify the type 's equal Unknown\", function () {\r",
-							"var codeNum=pm.response.json().type\r",
-							"    pm.expect(codeNum).to.equal(\"unknown\");\r",
-							"});\r",
-							"\r",
-							"\r",
-							""
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"id\": 10,\r\n  \"username\": \"{{$randomUserName}}\",\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"{{$randomPassword}}\",\r\n  \"phone\": \"{{$randomPhoneNumber}}\",\r\n  \"userStatus\": {{$randomPrice}}\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "{{baseURL}}user",
+					"raw": "https://simple-books-api.glitch.me/status",
+					"protocol": "https",
 					"host": [
-						"{{baseURL}}user"
+						"simple-books-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"status"
 					]
 				}
 			},
-			"response": [
-				{
-					"name": "New Request",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"id\": 10,\r\n  \"username\": \"{{$randomUserName}}\",\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"{{$randomPassword}}\",\r\n  \"phone\": \"{{$randomPhoneNumber}}\",\r\n  \"userStatus\": {{$randomPrice}}\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseURL}}user",
-							"host": [
-								"{{baseURL}}user"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Thu, 01 Jun 2023 16:22:26 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Access-Control-Allow-Methods",
-							"value": "GET, POST, DELETE, PUT"
-						},
-						{
-							"key": "Access-Control-Allow-Headers",
-							"value": "Content-Type, api_key, Authorization"
-						},
-						{
-							"key": "Server",
-							"value": "Jetty(9.2.9.v20150224)"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"code\": 200,\n    \"type\": \"unknown\",\n    \"message\": \"10\"\n}"
-				}
-			]
-		}
-	],
-	"variable": [
-		{
-			"key": "baseURL",
-			"value": "https://petstore.swagger.io/v2/"
+			"response": []
 		}
 	]
 }
